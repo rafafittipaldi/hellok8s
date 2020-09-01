@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: hellok8s
+  name: hellok8s
+spec:
+  rules:
+    - host: hellok8s.com.br
+      http:
+        paths:
+          - backend:
+              serviceName: hello-svc
+              servicePort: 8181
+            path: /
+  tls:
+    - hosts:
+        - hellok8s.com.br
