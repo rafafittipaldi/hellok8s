@@ -2,8 +2,8 @@
 Projeto exemplo Docker e Kubernetes
 
 # Comandos básicos Docker (https://docs.docker.com/reference/)
--- docker build -t rafafittipaldi/hellok8s:1.0 .
--- docker images
+docker build -t rafafittipaldi/hellok8s:1.0 .  
+docker images  
 docker ps
 docker rmi -f #image
 docker pull #image
