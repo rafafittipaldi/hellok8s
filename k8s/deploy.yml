@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hellok8s
+  name: hellok8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hellok8s
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hellok8s
+    spec:
+      containers:
+      - image: rafafittipaldi/hellok8s:1.0
+        name: hellok8s
