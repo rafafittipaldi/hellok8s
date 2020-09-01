@@ -7,6 +7,7 @@ docker images
 docker ps  
 docker rmi -f #image  
 docker pull #image  
+docker push #image
 docker run -d -p 8080:8080 rafafittipaldi/hellok8s:1.0  
 docker tag rafafittipaldi/hellok8s:1.0 rafafittipaldi/hellok8s:1.1  
 docker exec -it #containerid  
