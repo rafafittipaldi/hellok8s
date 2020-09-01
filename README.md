@@ -22,3 +22,6 @@ kubectl get all
 kubectl create service clusterip hello-svc --tcp=8181 --dry-run -o yaml > service.yml  
 kubectl apply -f service.yml  
 kubectl port-forward svc/hello-svc 8181
+kubectl delete all -l app=hellok8s  
+kubectl delete ing hellok8s  
+kubectl delete svc/hello-svc
