@@ -12,6 +12,7 @@ docker run -d -p 8181:8181 rafafittipaldi/hellok8s:1.0
 docker stop #containerid  
 docker tag rafafittipaldi/hellok8s:1.0 rafafittipaldi/hellok8s:1.1  
 docker exec -it #containerid  
+docker info  
 
 ### Comandos básicos kubernetes
 kubectl create deployment hellok8s --image=rafafittipaldi/hellok8s:1.0 --dry-run -o yaml> deploy.yml  
