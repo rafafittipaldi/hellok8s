@@ -15,17 +15,23 @@ docker exec -it #containerid
 docker info  
 
 ### Comandos básicos kubernetes
+kubectl config view
+kubectl proxy
 kubectl create deployment hellok8s --image=rafafittipaldi/hellok8s:1.0 --dry-run -o yaml> deploy.yml  
 kubectl apply -f deploy.yml  
 kubectl get deploy  
 kubectl get deploy -o wide  
 kubectl get all  
+kubectl get pods 
+kubectl describe pods
+kubectl delete pod
 kubectl create service clusterip hello-svc --tcp=8181 --dry-run -o yaml > service.yml  
 kubectl apply -f service.yml  
 kubectl port-forward svc/hello-svc 8181  
 kubectl delete all -l app=hellok8s  
 kubectl delete ing hellok8s  
 kubectl delete svc/hello-svc  
+kubectl get services  
 
 ### Setup a Jenkins Local DevOps
 https://medium.com/@anthony.f.tannous/setup-a-jenkins-local-devops-environment-using-docker-and-wsl2-c74ca47db9be 
