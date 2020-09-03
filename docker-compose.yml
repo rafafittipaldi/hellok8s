@@ -1,0 +1,15 @@
+version: "2"
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkinsci/blueocean
+    environment:
+      #### WINDOWS ONLY ####
+      - DOCKER_HOST=tcp://172.21.35.113:2375
+    user: root
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "50000:50000"
+    volumes:
+      - /var/jenkins_home

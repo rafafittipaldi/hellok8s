@@ -6,6 +6,10 @@ pipeline {
         maven "M3"
     }
     
+    environment {
+        ci_image_name = "rafafittipaldi/hellok8s:${BUILD_NUMBER}"
+    }
+    
     stages {
         stage ('Build') {
             steps {
@@ -22,15 +26,13 @@ pipeline {
             }
         }
         
-        /* Set the docker image name that for this build container.*/
-        def ci_image_name = "rafafittipaldi/hellok8s:${BUILD_NUMBER}"
-        
-        stage ('Docker build, push') {
+        stage ('Docker build, publish Docker Hub') {
             steps {
+                sh 'echo Imagem: ${ci_image_name}'
                 // This step should not normally be used in your script. Consult the inline help for details.
                 withDockerRegistry(credentialsId: 'f39c2138-3ef3-47fd-b7b1-35de793c7711', url: 'https://index.docker.io/v1/') {
                     sh 'docker build -t ${ci_image_name} .'
-                    sh 'docker push ${ImageName}'
+                    sh 'docker push ${ci_image_name}'
                 }
             }
         }
