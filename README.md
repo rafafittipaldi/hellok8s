@@ -13,7 +13,7 @@ docker stop #containerid
 docker tag rafafittipaldi/hellok8s:1.0 rafafittipaldi/hellok8s:1.1  
 docker exec -it #containerid  
 docker info  
-docker context create fittipaldi-server2 --docker "host=tcp://172.21.35.113:2375" --kubernetes "https://kubernetes.docker.internal:6443"  
+docker context create fittipaldi-server2 --docker "host=tcp://172.21.35.113:2375"  
 docker-compose up -d
 
 ### Comandos básicos kubernetes
@@ -51,4 +51,7 @@ https://medium.com/@Joachim8675309/jenkins-environment-using-docker-6a12603ebf9
 https://stackoverflow.com/questions/50916740/docker-command-not-found-in-local-jenkins-multi-branch-pipeline  
 
 ### Run commands on remote Docker host
-https://gist.github.com/kekru/4e6d49b4290a4eebc7b597c07eaf61f2#enable-docker-remote-api  
+https://gist.github.com/kekru/4e6d49b4290a4eebc7b597c07eaf61f2#enable-docker-remote-api 
+
+### Kubernetes (kubectl) Docker
+https://plugins.jenkins.io/kubernetes-cli/   
