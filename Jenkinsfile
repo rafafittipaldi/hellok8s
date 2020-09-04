@@ -30,19 +30,28 @@ pipeline {
             steps {
                 sh 'echo Imagem: ${ci_image_name}'
                 // This step should not normally be used in your script. Consult the inline help for details.
-                withDockerRegistry(credentialsId: 'f39c2138-3ef3-47fd-b7b1-35de793c7711', url: 'https://index.docker.io/v1/') {
+                withDockerRegistry(credentialsId: 'b600e99d-1e2e-43dd-b404-121da7318f6a', url: 'https://index.docker.io/v1/') {
                     sh 'docker build -t ${ci_image_name} .'
                     sh 'docker push ${ci_image_name}'
                 }
             }
         }
         
+        
+        
         stage ('Deploy kubernetes, publish') {
             steps {
-                sh 'kubectl create deployment hellok8s --image=${ci_image_name} --dry-run -o yaml > k8s/deploy.yml'
-                sh 'kubectl apply -f k8s/deploy.yml'
-                sh 'kubectl apply -f k8s/service.yml'
-                sh 'kubectl port-forward svc/hello-svc 8181'
+                withKubeConfig(credentialsId: 'file-kube', serverUrl: 'https://kubernetes.docker.internal:6443') {
+                    sh 'kubectl delete all -l app=hellok8s'
+                    sh 'rm k8s/deploy.yml'
+                    sh 'kubectl create deployment hellok8s --image=${ci_image_name} --dry-run -o yaml > k8s/deploy.yml'
+                    sh 'kubectl apply -f k8s/deploy.yml'
+                    sh 'kubectl apply -f k8s/service.yml'
+                    
+                    sleep(time: 10, unit: "SECONDS")
+                    
+                    sh 'kubectl port-forward svc/hello-svc 8181:8181'
+                }
             }
         }
     }
