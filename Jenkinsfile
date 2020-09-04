@@ -50,7 +50,7 @@ pipeline {
                     
                     sleep(time: 10, unit: "SECONDS")
                     
-                    sh 'kubectl expose deployment hellok8s --port=8181 --target-port=8181 --type=LoadBalancer --name=hello-svc'
+                    sh 'kubectl expose deployment hellok8s --port=8181 --target-port=8181 --type=LoadBalancer --name=hellok8s-svc'
                 }
             }
         }
