@@ -17,16 +17,16 @@ docker context create fittipaldi-server2 --docker "host=tcp://172.21.35.113:2375
 docker-compose up -d
 
 ### Comandos básicos kubernetes
-kubectl config view
-kubectl proxy
+kubectl config view  
+kubectl proxy  
 kubectl create deployment hellok8s --image=rafafittipaldi/hellok8s:1.0 --dry-run -o yaml> deploy.yml  
 kubectl apply -f deploy.yml  
 kubectl get deploy  
 kubectl get deploy -o wide  
 kubectl get all  
-kubectl get pods 
-kubectl describe pods
-kubectl delete pod
+kubectl get pods  
+kubectl describe pods  
+kubectl delete pod  
 kubectl create service clusterip hello-svc --tcp=8181 --dry-run -o yaml > service.yml  
 kubectl apply -f service.yml  
 kubectl port-forward svc/hello-svc 8181  
