@@ -13,6 +13,8 @@ docker stop #containerid
 docker tag rafafittipaldi/hellok8s:1.0 rafafittipaldi/hellok8s:1.1  
 docker exec -it #containerid  
 docker info  
+docker context create fittipaldi-server2 --docker "host=tcp://172.21.35.113:2375" --kubernetes "https://kubernetes.docker.internal:6443"  
+docker-compose up -d
 
 ### Comandos básicos kubernetes
 kubectl config view
