@@ -28,12 +28,22 @@ kubectl get pods
 kubectl describe pods  
 kubectl delete pod  
 kubectl create service clusterip hello-svc --tcp=8181 --dry-run -o yaml > service.yml  
+kubectl expose deployment hellok8s --port=8181 --target-port=8181 --type=LoadBalancer --name=hellok8s-svc  
 kubectl apply -f service.yml  
 kubectl port-forward svc/hello-svc 8181  
 kubectl delete all -l app=hellok8s  
 kubectl delete ing hellok8s  
 kubectl delete svc/hello-svc  
 kubectl get services  
+
+### Reset Builds Jenkins
+
+item = Jenkins.instance.getItemByFullName("hellok8s")  
+//THIS WILL REMOVE ALL BUILD HISTORY  
+item.builds.each() { build ->  
+  build.delete()  
+}  
+item.updateNextBuildNumber(1)  
 
 ### Setup a Jenkins Local DevOps
 https://medium.com/@anthony.f.tannous/setup-a-jenkins-local-devops-environment-using-docker-and-wsl2-c74ca47db9be 

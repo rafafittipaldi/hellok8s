@@ -46,11 +46,11 @@ pipeline {
                     sh 'rm k8s/deploy.yml'
                     sh 'kubectl create deployment hellok8s --image=${ci_image_name} --dry-run -o yaml > k8s/deploy.yml'
                     sh 'kubectl apply -f k8s/deploy.yml'
-                    sh 'kubectl apply -f k8s/service.yml'
+                    //sh 'kubectl apply -f k8s/service.yml'
                     
                     sleep(time: 10, unit: "SECONDS")
                     
-                    sh 'kubectl port-forward svc/hello-svc 8181:8181'
+                    sh 'kubectl expose deployment hellok8s --port=8181 --target-port=8181 --type=LoadBalancer --name=hello-svc'
                 }
             }
         }
