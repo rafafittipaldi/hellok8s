@@ -24,17 +24,19 @@ services:
     container_name: gogs-data
     image: gogs/gogs
     entrypoint:
-      - /bin/true
+        - /bin/true
   gogs:
     container_name: gogs
     image: gogs/gogs
-    volumes:
-        from:
-            - gogs-data
+    ports:
+      - "0.0.0.0:10022:22"
+      - "0.0.0.0:10080:3000"
+    volumes_from:
+        - gogs-data
   docker-remote-api:
     container_name: docker-remote-api
     image: jarkt/docker-remote-api
     ports:
-      - "0.0.0.0:2375:2375"
+        - "0.0.0.0:2375:2375"
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock

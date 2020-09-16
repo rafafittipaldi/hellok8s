@@ -11,7 +11,7 @@ docker push #image
 docker run -d -p 8181:8181 rafafittipaldi/hellok8s:1.0  
 docker stop #containerid  
 docker tag rafafittipaldi/hellok8s:1.0 rafafittipaldi/hellok8s:1.1  
-docker exec -it #containerid  
+docker exec -it #containerid /bin/bash
 docker info  
 docker context create fittipaldi-server2 --docker "host=tcp://172.21.35.113:2375"  
 docker-compose up -d
@@ -46,7 +46,7 @@ item.builds.each() { build ->
 item.updateNextBuildNumber(1)  
 
 ### Setup a Jenkins Local DevOps
-https://medium.com/@anthony.f.tannous/setup-a-jenkins-local-devops-environment-using-docker-and-wsl2-c74ca47db9be 
+https://medium.com/@anthony.f.tannous/setup-a-jenkins-local-devops-environment-using-docker-and-wsl2-c74ca47db9be  
 https://medium.com/@Joachim8675309/jenkins-environment-using-docker-6a12603ebf9   
 https://stackoverflow.com/questions/50916740/docker-command-not-found-in-local-jenkins-multi-branch-pipeline  
 
