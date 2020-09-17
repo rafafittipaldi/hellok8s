@@ -43,7 +43,7 @@ pipeline {
             steps {
                 withKubeConfig(credentialsId: 'file-kube', serverUrl: 'https://kubernetes.docker.internal:6443') {
                     sh 'kubectl delete all -l app=hellok8s'
-                    sh 'rm k8s/deploy.yml'
+                    sh 'rm -f k8s/deploy.yml'
                     sh 'kubectl create deployment hellok8s --image=${ci_image_name} --dry-run -o yaml > k8s/deploy.yml'
                     sh 'kubectl apply -f k8s/deploy.yml'
                     //sh 'kubectl apply -f k8s/service.yml'
