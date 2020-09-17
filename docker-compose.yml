@@ -27,7 +27,7 @@ services:
       - "0.0.0.0:9444:9000"
   gogs:
     container_name: gogs
-    image: gogs/gogs
+    image: gogs/gogs:0.12
     ports:
       - "0.0.0.0:22:22"
       - "0.0.0.0:3000:3000"
