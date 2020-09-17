@@ -25,19 +25,14 @@ services:
     image: scireum/s3-ninja:6.5.1
     ports:
       - "0.0.0.0:9444:9000"
-  gogs-data:
-    container_name: gogs-data
-    image: gogs/gogs
-    entrypoint:
-        - /bin/true
   gogs:
     container_name: gogs
     image: gogs/gogs
     ports:
-      - "0.0.0.0:10022:22"
-      - "0.0.0.0:10080:3000"
-    volumes_from:
-        - gogs-data
+      - "0.0.0.0:22:22"
+      - "0.0.0.0:3000:3000"
+    volumes:
+      - gogs-data:/data
   docker-remote-api:
     container_name: docker-remote-api
     image: jarkt/docker-remote-api
@@ -45,3 +40,6 @@ services:
         - "0.0.0.0:2375:2375"
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
+volumes:
+    gogs-data:
+        name: gogs-data
