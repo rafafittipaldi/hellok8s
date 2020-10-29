@@ -2,16 +2,16 @@
 Projeto exemplo Docker e Kubernetes
 
 ### Comandos básicos Docker (https://docs.docker.com/reference/)
-docker build -t rafafittipaldi/hellok8s:1.0 .  
+docker build -t <your-image>:<your-tag> .  
 docker images  
 docker ps  
 docker rmi -f #image  
 docker pull #image  
 docker push #image  
-docker run -d -p 8181:8181 --name hellok8s rafafittipaldi/hellok8s:1.0  
-docker stop #containerid  
-docker tag rafafittipaldi/hellok8s:1.0 rafafittipaldi/hellok8s:1.1  
-docker exec -it #containerid /bin/bash
+docker run -d -p 8181:8181 --name <name-container> <your-image>:<your-tag>  
+docker stop <container-id>  
+docker tag <your-image>:<your-tag> <your-image>:<new-tag>  
+docker exec -it <container-id> /bin/bash  
 docker info  
 docker context create fittipaldi-server2 --docker "host=tcp://172.21.35.113:2375"  
 docker-compose up -d
@@ -19,22 +19,24 @@ docker-compose up -d
 ### Comandos básicos kubernetes
 kubectl config view  
 kubectl proxy  
-kubectl create deployment hellok8s --image=rafafittipaldi/hellok8s:1.0 --dry-run -o yaml> deploy.yml  
+kubectl create deployment <your-deployment> --image=<your-image> --dry-run=client -o yaml> k8s/deploy.yml  
+kubectl create service clusterip <your-service> --tcp=8181 --dry-run=client -o yaml > service.yml  
+kubectl expose deployment <your-deployment> --port=8181 --target-port=8181 --type=LoadBalancer --name=<name-service> 
 kubectl apply -f deploy.yml  
-kubectl get deploy  
-kubectl get deploy -o wide  
+kubectl get deployment 
+kubectl get deployment -o wide  
 kubectl get all  
 kubectl get pods  
 kubectl describe pods  
-kubectl delete pod  
-kubectl create service clusterip hello-svc --tcp=8181 --dry-run -o yaml > service.yml  
-kubectl expose deployment hellok8s --port=8181 --target-port=8181 --type=LoadBalancer --name=hellok8s-svc  
+kubectl delete pod    
 kubectl apply -f service.yml  
-kubectl port-forward svc/hello-svc 8181  
-kubectl delete all -l app=hellok8s  
-kubectl delete ing hellok8s  
-kubectl delete svc/hello-svc  
+kubectl port-forward <your-service> 8181  
+kubectl delete all -l app=<your-app>  
+kubectl delete <your-service>  
 kubectl get services  
+kubectl run <your-deployment> --image=<your-image> --replicas=10  
+kubectl scale deployment <your-deployment> --replicas=10  
+kubectl autoscale deployment <your-deployment> --cpu-percent=50 --min=1 --max=10    
 
 ### Reset Builds Jenkins
 
