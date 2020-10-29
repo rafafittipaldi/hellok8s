@@ -19,7 +19,7 @@ docker-compose up -d
 ### Comandos básicos kubernetes
 kubectl config view  
 kubectl proxy  
-kubectl create deployment (your-deployment) --image=(your-image) --port=8181 --replicas=3 --dry-run=client -o yaml> k8s/deploy.yml  
+kubectl create deployment (your-deployment) --image=(your-image) --port=8181 --r=3 --dry-run=client -o yaml> k8s/deploy.yml  
 kubectl create service clusterip (your-service) --tcp=8181 --dry-run=client -o yaml > k8s/service.yml  
 kubectl expose deployment (your-deployment) --port=8181 --target-port=8181 --type=LoadBalancer --name=(name-service)  
 kubectl apply -f deploy.yml  
@@ -57,3 +57,4 @@ https://gist.github.com/kekru/4e6d49b4290a4eebc7b597c07eaf61f2#enable-docker-rem
 
 ### Kubernetes (kubectl) Docker
 https://plugins.jenkins.io/kubernetes-cli/   
+https://kubernetes.io/blog/2020/05/21/wsl-docker-kubernetes-on-the-windows-desktop/ (Dashboard)  
