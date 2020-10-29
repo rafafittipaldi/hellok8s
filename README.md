@@ -14,21 +14,21 @@ docker tag (your-image):(your-tag) (your-image):(new-tag)
 docker exec -it (container-id) /bin/bash  
 docker info  
 docker context create fittipaldi-server2 --docker "host=tcp://172.21.35.113:2375"  
-docker-compose up -d
+docker-compose up -d  
 
 ### Comandos básicos kubernetes
 kubectl config view  
 kubectl proxy  
 kubectl create deployment (your-deployment) --image=(your-image) --dry-run=client -o yaml> k8s/deploy.yml  
 kubectl create service clusterip (your-service) --tcp=8181 --dry-run=client -o yaml > service.yml  
-kubectl expose deployment (your-deployment) --port=8181 --target-port=8181 --type=LoadBalancer --name=(name-service) 
+kubectl expose deployment (your-deployment) --port=8181 --target-port=8181 --type=LoadBalancer --name=(name-service)  
 kubectl apply -f deploy.yml  
-kubectl get deployment 
+kubectl get deployment  
 kubectl get deployment -o wide  
 kubectl get all  
 kubectl get pods  
 kubectl describe pods  
-kubectl delete pod    
+kubectl delete pod  
 kubectl apply -f service.yml  
 kubectl port-forward (your-service) 8181  
 kubectl delete all -l app=(your-app)  
@@ -36,7 +36,7 @@ kubectl delete (your-service)
 kubectl get services  
 kubectl run (your-deployment) --image=(your-image) --replicas=10  
 kubectl scale deployment (your-deployment) --replicas=10  
-kubectl autoscale deployment (your-deployment) --cpu-percent=50 --min=1 --max=10    
+kubectl autoscale deployment (your-deployment) --cpu-percent=50 --min=1 --max=10  
 
 ### Reset Builds Jenkins
 
