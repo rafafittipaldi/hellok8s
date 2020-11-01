@@ -40,12 +40,17 @@ kubectl autoscale deployment (your-deployment) --cpu-percent=50 --min=1 --max=10
 
 ### Reset Builds Jenkins
 
-item = Jenkins.instance.getItemByFullName("hellok8s")  
+item = Jenkins.instance.getItemByFullName(pipeline-name)  
+
 //THIS WILL REMOVE ALL BUILD HISTORY  
 item.builds.each() { build ->  
   build.delete()  
 }  
 item.updateNextBuildNumber(1)  
+
+### Git AutoIncrement Version
+
+mvn build-helper:parse-version versions:set -DgenerateBackupPoms=false -DnewVersion=${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}-SNAPSHOT  
 
 ### Setup a Jenkins Local DevOps
 https://medium.com/@anthony.f.tannous/setup-a-jenkins-local-devops-environment-using-docker-and-wsl2-c74ca47db9be  
