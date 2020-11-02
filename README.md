@@ -8,7 +8,7 @@ docker ps
 docker rmi -f #image  
 docker pull #image  
 docker push #image  
-docker run -d -p 8181:8181 --name (name-container) (your-image):(your-tag)  
+docker run --rm -it -d -p 8181:8181 --name (name-container) (your-image):(your-tag)  
 docker stop (container-id)  
 docker tag (your-image):(your-tag) (your-image):(new-tag)  
 docker exec -it (container-id) /bin/bash  
