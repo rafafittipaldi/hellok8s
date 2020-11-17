@@ -3,7 +3,7 @@ Projeto exemplo Docker e Kubernetes
 
 ### Comandos básicos Docker (https://docs.docker.com/reference/)
 docker build -t (your-image):(your-tag) .  
-docker build -t (your-image):latest -t (your-image):(your-tag) .
+docker build -t (your-image):latest -t (your-image):(your-tag) .  
 docker images  
 docker ps  
 docker rmi -f #image  
