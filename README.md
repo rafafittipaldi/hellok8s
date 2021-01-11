@@ -20,7 +20,7 @@ docker-compose up -d
 ### Comandos básicos kubernetes
 kubectl config view  
 kubectl proxy  
-kubectl create deployment (your-deployment) --image=(your-image) --port=8181 --r=3 --dry-run=client -o yaml> k8s/deploy.yml  
+kubectl create deployment (your-deployment) --image=(your-image) --port=8181 -r=3 --dry-run=client -o yaml> k8s/deploy.yml  
 kubectl create service clusterip (your-service) --tcp=8181 --dry-run=client -o yaml > k8s/service.yml  
 kubectl expose deployment (your-deployment) --port=8181 --target-port=8181 --type=LoadBalancer --name=(name-service)  
 kubectl apply -f deploy.yml  
