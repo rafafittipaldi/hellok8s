@@ -39,6 +39,12 @@ kubectl run (your-deployment) --image=(your-image) --replicas=10
 kubectl scale deployment (your-deployment) --replicas=10  
 kubectl autoscale deployment (your-deployment) --cpu-percent=50 --min=1 --max=10  
 
+### Comandos Maven + Autoincrement 
+
+${project_loc:}  
+
+mvn build-helper:parse-version versions:set -DgenerateBackupPoms=false -DnewVersion=${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}-SNAPSHOT  
+
 ### Reset Builds Jenkins
 
 item = Jenkins.instance.getItemByFullName(pipeline-name)  
@@ -47,11 +53,7 @@ item = Jenkins.instance.getItemByFullName(pipeline-name)
 item.builds.each() { build ->  
   build.delete()  
 }  
-item.updateNextBuildNumber(1)  
-
-### Git AutoIncrement Version
-
-mvn build-helper:parse-version versions:set -DgenerateBackupPoms=false -DnewVersion=${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}-SNAPSHOT  
+item.updateNextBuildNumber(1)   
 
 ### Setup a Jenkins Local DevOps
 https://medium.com/@anthony.f.tannous/setup-a-jenkins-local-devops-environment-using-docker-and-wsl2-c74ca47db9be  
