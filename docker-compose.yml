@@ -18,6 +18,7 @@ services:
     image: mysql:5.7.31
     environment:
       - MYSQL_ROOT_PASSWORD=root
+      - TZ=America/Sao_Paulo
     ports:
       - "0.0.0.0:3306:3306"
   s3-ninja:
